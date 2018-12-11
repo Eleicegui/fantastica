@@ -1,0 +1,40 @@
+<table>
+  <thead>
+    <tr>
+      <th>Producto</th>
+      <th>Modelo</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    #if ($descripciones.size() > 0)
+      #set($total = 0)
+        #foreach ($desc_orden in $descripciones)
+          #set($descripcionProducto = $desc_orden.getDescripcionProducto())
+          #set($producto = $descripcionProducto.getProducto())
+          #set($cantidad = $desc_orden.getCantidad())
+          #set($precio = $descripcionProducto.getPrecio())
+          #set($subtotal = $precio * $cantidad)
+          #set($total = $total + $subtotal)
+
+          <tr>
+            <td>$producto.getFullName()</td>
+            <td>$descripcionProducto.getModelo()</td>
+            <td>$cantidad</td>
+            <td>$ $precio</td>
+            <td style="text-align: right">$ $subtotal</td>
+          </tr>
+        #end
+        <tr>
+          <td colspan="5" style="text-align: right; font-weight: bold">$ $total</td>
+        </tr>
+    #else
+        <tr>
+          <td colspan="5" style="text-align: center"><h1>No tiene ningún producto en el carro.</h1></td>
+        </tr>
+    #end
+  </tbody>
+</table>

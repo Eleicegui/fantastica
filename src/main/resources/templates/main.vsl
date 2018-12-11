@@ -1,0 +1,19 @@
+<div class="jumbotron jumbotron-fluid">
+  <h1>$title</h1>
+
+  <div id="mostrarCarrito"></div>
+
+  <script>
+    $.ajax({
+      url: '/api/cart/list?client_id=3',
+      type: 'get',
+      success: function(data) {
+        $("#mostrarCarrito").html(data);
+      },
+      error: function(xhr, textStatus, errorThrown) {
+        alert(errorThrown);
+      }
+    });
+
+  </script>
+</div>

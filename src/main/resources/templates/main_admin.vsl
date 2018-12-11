@@ -1,0 +1,14 @@
+ <div class="content admin">
+        <div class="title admin"><H1>Opciones de Administrador</H1></div>
+                <div class="row admin">
+                    <div class="card" href="/admin/historial" >
+                        <a href="/admin/historial"> 
+                            <div class="inner-card admin">Órdenes de Compra</div>
+                        </a>
+                    </div>
+                    
+                    <div class="card"><div class="inner-card admin">Ver Reclamos</div></div>
+                    <div class="card"><div class="inner-card admin">Gestionar Stock</div></div>
+                    <div class="card"><div class="inner-card admin">Listar Clientes</div></div>
+        </div>
+</div>

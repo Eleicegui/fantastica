@@ -1,0 +1,953 @@
+/* Main form wrapper */
+.fs-form-wrap {
+    color: #3b3f45;
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.overview .fs-form-wrap {
+    height: auto;
+}
+
+/* Title */
+.fs-title {
+    left: 0;
+    margin: 0;
+    padding: 40px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.fs-title h1 {
+    margin: 0;
+}
+
+/* Form */
+.fs-form {
+    font-size: 2.5em;
+    position: relative;
+    text-align: left;
+}
+
+.no-js .fs-form {
+    padding: 0 0 6em 0;
+}
+
+/* Views (fullscreen and overview)*/
+.fs-form-full {
+    margin: 0 auto;
+    top: 28%;  /* 32%; */
+    width: 70%;
+}
+
+.fs-form-full,
+.fs-message-error {
+    max-width: 960px;
+}
+
+.fs-form-overview {
+    background: #d9d8ff;
+    color: #3b3f45;
+    font-size: 1.2em;
+    height: 100%;
+    padding: 2.5em 30% 6em;
+    width: 100%;
+}
+
+.fs-form-overview .fs-fields::before {
+    color: #3b3f45;
+    content: 'Así quedó tu computadora';
+    display: block;
+    font-size: 1.85em;
+    font-weight: 700;
+    margin-bottom: 2.5em;
+}
+
+/* Switch view animation (we hide the current view, switch the view class and show it again) */
+.fs-form.fs-show {
+    -webkit-animation: animFadeIn 0.5s;
+    animation: animFadeIn 0.5s;
+}
+
+@-webkit-keyframes animFadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes animFadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.fs-form.fs-show .fs-fields {
+    -webkit-animation: animMove 0.5s;
+    animation: animMove 0.5s;
+}
+
+@-webkit-keyframes animMove {
+    from { top: 100px; }
+}
+
+@keyframes animMove {
+    from { top: 100px; }
+} /* we need to use top here because otherwise all our fixed elements will become absolute */
+
+/* Visibility control of elements */
+.fs-form-full .fs-fields > li,
+.fs-nav-dots,
+.fs-progress,
+.fs-numbers,
+button.fs-continue,
+.fs-message-error,
+.fs-message-final {
+    visibility: hidden;
+}
+
+.no-js .fs-form-full .fs-fields > li {
+    visibility: visible;
+}
+
+.fs-show {
+    visibility: visible !important;
+}
+
+/* Some general styles */
+.fs-form-wrap button {
+    background: none;
+    border: none;
+}
+
+.fs-form-wrap button[disabled] {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.fs-form-wrap input:focus,
+.fs-form-wrap button:focus {
+    outline: none;
+}
+
+/* Hide the submit button */
+.fs-form .fs-cancel,
+.fs-form .fs-submit {
+    display: none;
+}
+
+/* Fields */
+.fs-fields {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    top: 0;
+}
+
+/* .fs-form-overview ol {
+    max-width: ;
+} */
+
+.fs-fields > li {
+    border: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.fs-fields > li:hover {
+    z-index: 999;
+}
+
+.js .fs-form-full .fs-fields > li {
+    position: absolute;
+    width: 80%;
+}
+
+.fs-form-overview .fs-fields > li,
+.no-js .fs-form .fs-fields > li {
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+    margin: 1em 0 2em;
+    padding: 0 0 2em 0;
+}
+
+/* Labels & info */
+.fs-fields > li label {
+    position: relative;
+}
+
+.fs-fields > li label.fs-field-label {
+    display: inline-block;
+    font-weight: 700;
+    padding: 0 5px 1em 0;
+    pointer-events: none;
+}
+
+.fs-form-full .fs-fields > li label[data-info]::after {
+    border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.4);
+    color: rgba(0,0,0,0.4);
+    content: 'i';
+    cursor: pointer;
+    display: inline-block;
+    font-family: Georgia, serif;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 700;
+    height: 24px;
+    line-height: 20px;
+    margin-left: 10px;
+    pointer-events: auto;
+    position: relative;
+    text-align: center;
+    vertical-align: top;
+    width: 24px;
+}
+
+.fs-form-full .fs-fields > li label[data-info]::before {
+    -webkit-transform: translate3d(0,-5px,0);
+    -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+    bottom: 100%;
+    color: #6a7b7e;
+    content: attr(data-info);
+    font-size: 0.4em;
+    left: 0;
+    min-width: 200px;
+    opacity: 0;
+    padding: 0 0 10px;
+    pointer-events: none;
+    position: absolute;
+    transform: translate3d(0,-5px,0);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.fs-form-full .fs-fields > li label[data-info]:hover::before {
+    -webkit-transform: translate3d(0,0,0);
+    opacity: 1;
+    transform: translate3d(0,0,0);
+}
+
+.fs-form-full .fs-fields > li label:hover ~ .fs-info,
+.fs-form-full .fs-fields > li .fs-info:hover {
+    -webkit-transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Inputs */
+.fs-fields input {
+    background-color: transparent;
+    border-bottom: 2px solid rgba(0,0,0,0.2);
+    border-radius: 0;
+    border: none;
+    color: #fffed8;
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+    padding: 0 0 0.15em;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.fs-fields input:invalid {
+    box-shadow: none; /* removes red shadow in FF*/
+}
+
+.fs-form-overview .fs-fields input {
+    border-bottom-color: transparent;
+    color: rgba(0,0,0,0.5);
+}
+
+.fs-fields [required] {
+    background-image: url(../img/abacusstar.svg);
+    background-position: top right;
+    background-repeat: no-repeat;
+    background-size: 18px;
+}
+
+.fs-fields input:focus {
+    background-color: #3b3f45; /* Fixes chrome bug with placeholder */
+}
+
+.fs-form-overview .fs-fields input:focus {
+    background-color: #fffed8; /* Fixes chrome bug with placeholder */
+}
+
+.fs-form-overview .fs-fields input {
+    font-size: 1.2em;
+}
+
+.fs-radio-fantastica, .fs-radio-custom {
+    margin: 0 auto;
+    max-width: 900px;
+}
+
+.fs-fields .fs-radio-fantastica input[type="radio"],
+.fs-fields .fs-radio-custom input[type="radio"] {
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    /*margin: 0 auto 20px;
+    margin: 30px auto 20px;*/
+    opacity: 0;
+    /*position: absolute;*/
+    width: 100%;
+}
+
+
+.fs-fields > li .fs-radio-fantastica span,
+.fs-fields > li .fs-radio-custom span {
+    /*max-width: 200px;*/
+    border-color: rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+    border: 1px solid;
+    float: left;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 70%;
+    font-weight: 700;
+    margin-right: 2%;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+    width: 31%;
+}
+.fs-fields > li .two_options span {
+    margin-right: 20px;
+    width: 46%;
+}
+
+.fs-fields > li .fs-radio-fantastica span label,
+.fs-fields > li .fs-radio-custom span label {
+    color: rgba(0,0,0,0.4);
+    -webkit-transition: color 0.3s;
+    transition: color 0.3s;
+}
+
+.fs-form-overview .fs-fields > li .fs-radio-fantastica span,
+.fs-form-overview .fs-fields > li .fs-radio-custom span {
+    max-width: 140px;
+}
+
+.fs-form-overview .fs-fields > li .fs-radio-fantastica span,
+.fs-form-overview .fs-fields > li .fs-radio-custom span {
+    font-size: 75%;
+}
+
+.fs-fields > li .fs-radio-fantastica label,
+.fs-fields > li .fs-radio-custom label {
+    cursor: pointer;
+    display: block;
+    height: 100%;
+    padding-top: 100%;
+    width: 100%;
+}
+
+.fs-fields .fs-radio-fantastica img {
+    -webkit-transform: translate(-50%,-50%);
+    -webkit-transition: opacity 0.2s;
+    left: 50%;
+    opacity: 0.5;
+    position: absolute;
+    top: 36%;
+    transform: translate(-50%,-50%);
+    transition: opacity 0.2s;
+    width: 80%;
+}
+
+.fs-fields .fs-radio-fantastica label:hover img,
+.fs-fields .fs-radio-fantastica input[type="radio"]:focus + label img,
+.fs-fields .fs-radio-fantastica input[type="radio"]:checked + label img {
+    opacity: 1;
+}
+.fs-fields .fs-radio-fantastica label:hover,
+.fs-fields .fs-radio-fantastica input[type="radio"]:focus + label,
+.fs-fields .fs-radio-fantastica input[type="radio"]:checked + label {
+    color: rgba(0,0,0,1);
+}
+
+
+.fs-fields .fs-radio-custom label::after {
+    -webkit-transform: translate(-50%,-50%);
+    -webkit-transition: opacity 0.2s;
+    background-position: 50% 0%;
+    background-repeat: no-repeat;
+    background-size: 85%;
+    content: '';
+    height: 70%;  /* 100% */
+    left: 50%;
+    opacity: 0.5;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    transition: opacity 0.2s;
+    width: 100%;
+}
+
+.fs-fields .fs-radio-custom label.radio-mobile::after {
+    background-image: url(../img/mobile.svg);
+}
+
+.fs-fields .fs-radio-custom label.radio-social::after {
+    background-image: url(../img/macbook-icon.svg);
+    height: 48%;
+}
+
+.fs-fields .fs-radio-custom label.radio-conversion::after {
+    background-image: url(../img/computer-icon.svg);
+}
+.fs-fields .fs-radio-custom label:hover::after,
+.fs-fields input[type="radio"]:focus + label::after,
+.fs-fields input[type="radio"]:checked + label::after {
+    opacity: 1;
+}
+.fs-fields .fs-radio-custom label:hover,
+.fs-fields input[type="radio"]:focus + label,
+.fs-fields input[type="radio"]:checked + label {
+    color: rgba(0,0,0,1);
+}
+
+.fs-fields .fs-radio-custom input[type="radio"]:checked + label {
+    /*color: #fffed8;*/
+    color: #3b3f45;
+}
+
+.fs-form-overview .fs-fields .fs-radio-custom input[type="radio"]:checked + label {
+    color: rgba(0,0,0,0.8);
+}
+
+.fs-fields textarea {
+    background-color: transparent;
+    border: 2px solid rgba(0,0,0,0.2);
+    color: #fffed8;
+    font-size: 0.85em;
+    font-weight: 700;
+    height: 200px;
+    padding: 0.25em;
+    resize: none;
+    width: 100%;
+}
+
+.fs-form-overview .fs-fields textarea {
+    height: 100px;
+    color: rgba(0,0,0,0.5);
+}
+
+.fs-fields textarea:focus {
+    outline: none;
+}
+
+.fs-form-overview .fs-fields textarea {
+    padding: 0;
+    border-color: transparent;
+}
+
+.fs-form-overview .fs-fields textarea:focus {
+    background: #fffed8;
+}
+
+.fs-form div.cs-select.cs-skin-boxes {
+    display: block;
+}
+
+.fs-form-overview .cs-skin-boxes > span {
+    border-radius: 5px;
+    font-size: 0.8em;
+    height: 70px;
+    width: 90px;
+}
+
+.fs-form-overview .cs-skin-boxes > span::before {
+    box-shadow: 0 20px 0 #292c30, inset 0 -5px #292c30;
+    padding-top: 50px;
+}
+
+.fs-fields input.fs-mark {
+    padding-left: 1em;
+    background-image: url(../img/dollar.svg);
+    background-position: 0% 0.15em;
+    background-size: auto 75%;
+    background-repeat: no-repeat;
+}
+
+.fs-fields input.fs-mark[required] {
+    background-image: url(../img/dollar.svg), url(../img/abacusstar.svg);
+    background-position: 0% 0.15em, top right;
+    background-repeat: no-repeat;
+    background-size: auto 75%, 18px;
+}
+
+/* placeholder */
+.fs-fields input::-webkit-input-placeholder,
+.fs-fields textarea::-webkit-input-placeholder {
+    color: rgba(0,0,0,0.1);
+}
+
+.fs-fields input:-moz-placeholder,
+.fs-fields textarea:-moz-placeholder {
+    color: rgba(0,0,0,0.1);
+}
+
+.fs-fields input::-moz-placeholder,
+.fs-fields textarea::-moz-placeholder {
+    color: rgba(0,0,0,0.1);
+}
+
+.fs-fields input:-ms-input-placeholder,
+.fs-fields textarea:-ms-input-placeholder {
+    color: rgba(0,0,0,0.1);
+}
+
+/* Hide placeholder when focused in Webkit browsers */
+.fs-fields input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+
+/* Dot navigation */
+.fs-nav-dots {
+    -webkit-transform: translateY(-50%);
+    left: auto;
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.fs-nav-dots button {
+    -webkit-transition: -webkit-transform 0.3s ease, opacity 0.3s ease;
+    background: transparent;
+    border-radius: 50%;
+    display: block;
+    height: 16px;
+    margin: 16px 0;
+    padding: 0;
+    position: relative;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    width: 16px;
+}
+
+.fs-nav-dots button::before,
+.fs-nav-dots button::after {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 50%;
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    text-indent: 0;
+    top: 0;
+    width: 100%;
+}
+
+.fs-nav-dots button::after {
+    -webkit-transform: perspective(1000px) rotate3d(0,1,0,180deg);
+    background-color: rgba(0,0,0,0.4);
+    transform: perspective(1000px) rotate3d(0,1,0,180deg);
+}
+
+.fs-nav-dots button.fs-dot-current {
+    -webkit-transform: perspective(1000px) rotate3d(0,1,0,180deg);
+    transform: perspective(1000px) rotate3d(0,1,0,180deg);
+}
+
+.fs-nav-dots button:hover::before,
+.fs-nav-dots button.fs-dot-current::before {
+    background: #668cff;  /* #fffed8; */
+}
+
+/* Progress bar */
+.fs-progress {
+    -webkit-transition: width 0.3s ease-in-out;
+    background: #668cff; /* #fffed8; */
+    height: 0.5em;
+    position: absolute;
+    top: 0;
+    transition: width 0.3s ease-in-out;
+    width: 0%;
+}
+
+/* Number indicator */
+.fs-numbers {
+    color: rgba(0,0,0,0.4);
+    cursor: default;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 2em;
+    font-weight: 700;
+    margin: 40px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 2em;
+}
+
+.fs-numbers:after {
+    content: '/';
+    font-weight: 300;
+    left: 0;
+    opacity: 0.4;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.fs-numbers span {
+    float: right;
+    text-align: center;
+    width: 40%;
+}
+
+.fs-numbers .fs-number-current {
+    float: left;
+}
+
+.fs-numbers .fs-number-new {
+    -webkit-transform: translateY(100%);
+    left: 0;
+    position: absolute;
+    transform: translateY(100%);
+}
+
+/* Animations for numbers */
+/* Show next number */
+.fs-numbers.fs-show-next .fs-number-new {
+    -webkit-animation: animMoveUpFromDown 0.4s both;
+    animation: animMoveUpFromDown 0.4s both;
+}
+
+@-webkit-keyframes animMoveUpFromDown {
+    from { -webkit-transform: translateY(100%); }
+    to { -webkit-transform: translateY(0); }
+}
+
+@keyframes animMoveUpFromDown {
+    from { -webkit-transform: translateY(100%); transform: translateY(100%); }
+    to { -webkit-transform: translateY(0); transform: translateY(0); }
+}
+
+.fs-numbers.fs-show-next .fs-number-current {
+    -webkit-animation: animMoveUp 0.4s both;
+    animation: animMoveUp 0.4s both;
+}
+
+@-webkit-keyframes animMoveUp {
+    to { -webkit-transform: translateY(-100%); }
+}
+
+@keyframes animMoveUp {
+    to { -webkit-transform: translateY(-100%); transform: translateY(-100%); }
+}
+
+/* Show previous number */
+.fs-numbers.fs-show-prev .fs-number-new {
+    -webkit-animation: animMoveDownFromUp 0.4s both;
+    animation: animMoveDownFromUp 0.4s both;
+}
+
+@-webkit-keyframes animMoveDownFromUp {
+    from { -webkit-transform: translateY(-100%); }
+    to { -webkit-transform: translateY(0); }
+}
+
+@keyframes animMoveDownFromUp {
+    from { -webkit-transform: translateY(-100%); transform: translateY(-100%); }
+    to { -webkit-transform: translateY(0); transform: translateY(0); }
+}
+
+.fs-numbers.fs-show-prev .fs-number-current {
+    -webkit-animation: animMoveDown 0.4s both;
+    animation: animMoveDown 0.4s both;
+}
+
+@-webkit-keyframes animMoveDown {
+    to { -webkit-transform: translateY(100%); }
+}
+
+@keyframes animMoveDown {
+    to { -webkit-transform: translateY(100%); transform: translateY(100%); }
+}
+
+/* Continue button and submit button */
+a.fs-cancel,
+button.fs-submit,
+button.fs-continue {
+    padding: 0.6em 1.5em;
+    border: 3px solid #232529;
+    border-radius: 40px;
+    font-weight: 700;
+    color: rgba(0,0,0,0.4);
+}
+
+.fs-form-overview .fs-cancel,
+.fs-form-overview .fs-submit,
+.no-js .fs-form .fs-submit  {
+    display: block;
+    float: right;
+}
+
+.fs-form-overview .fs-cancel {
+    font-weight: 400;
+    border: 1px solid #232529;
+    margin-right: 20px;
+}
+
+.fs-form-overview .fs-submit {
+    /*border-color: #232529;
+    color: #232529;*/
+    background: #232529;
+    color: #FFFFFF;
+    font-weight: 400;
+    border: 1px solid #232529;
+}
+button.fs-continue {
+    bottom: 0;
+    font-size: 1.25em;
+    margin: 0 40px 40px 0;
+    position: absolute;
+    right: 0;
+}
+
+button.fs-submit:hover,
+button.fs-submit:focus,
+button.fs-continue:hover {
+    background: #232529;
+    color: #fff;
+}
+
+.fs-continue::after {
+    background: transparent;
+    color: rgba(0,0,0,0.3);
+    content: 'o presione ENTER';
+    font-size: 0.65em;
+    left: 0;
+    line-height: 3;
+    pointer-events: none;
+    position: absolute;
+    text-align: center;
+    top: 100%;
+    width: 100%;
+}
+
+/* Error message */
+.fs-message-error {
+    -webkit-transform: translate3d(-50%,-5px,0);
+    bottom: 75%;
+    color: #eb7e7f;
+    font-size: 1em;
+    font-weight: 700;
+    left: 50%;
+    max-width: 960px;
+    opacity: 0;
+    position: absolute;
+    transform: translate3d(-50%,-5px,0);
+    width: 70%;
+    z-index: 800;
+}
+
+.fs-message-error.fs-show {
+    -webkit-transform: translate3d(-50%,0,0);
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+    opacity: 1;
+    transform: translate3d(-50%,0,0);
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Animation classes & animations */
+.fs-form li.fs-current {
+    visibility: visible;
+}
+
+.fs-form li.fs-hide,
+.fs-form li.fs-show {
+    pointer-events: none;
+}
+
+/* Hide current li when navigating to next question */
+.fs-form .fs-display-next .fs-hide {
+    visibility: visible;
+}
+
+.fs-form .fs-display-next .fs-hide .fs-anim-lower,
+.fs-form .fs-display-next .fs-hide .fs-anim-upper {
+    -webkit-animation: animHideNext 0.5s cubic-bezier(0.7,0,0.3,1) forwards;
+    animation: animHideNext 0.5s cubic-bezier(0.7,0,0.3,1) forwards;
+}
+
+.fs-form .fs-display-next .fs-hide .fs-anim-lower {
+    -webkit-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+}
+
+@-webkit-keyframes animHideNext {
+    to { opacity: 0; -webkit-transform: translate3d(0,-500px,0); }
+}
+
+@keyframes animHideNext {
+    to { opacity: 0; -webkit-transform: translate3d(0,-500px,0); transform: translate3d(0,-500px,0); }
+}
+
+/* Show new li when navigating to next question */
+.fs-form .fs-display-next .fs-show .fs-anim-lower,
+.fs-form .fs-display-next .fs-show .fs-anim-upper {
+    -webkit-animation: animShowNext 0.5s cubic-bezier(0.7,0,0.3,1) both 0.15s;
+    animation: animShowNext 0.5s cubic-bezier(0.7,0,0.3,1) both 0.15s;
+}
+
+.fs-form .fs-display-next .fs-show .fs-anim-lower {
+    -webkit-animation-delay: 0.25s;
+    animation-delay: 0.25s;
+}
+
+@-webkit-keyframes animShowNext {
+    from { opacity: 0; -webkit-transform: translate3d(0,500px,0); }
+}
+
+@keyframes animShowNext {
+    from { opacity: 0; -webkit-transform: translate3d(0,500px,0); transform: translate3d(0,500px,0); }
+}
+
+/* Hide current li when navigating to previous question */
+.fs-form .fs-display-prev .fs-hide {
+    visibility: visible;
+}
+
+.fs-form .fs-display-prev .fs-hide .fs-anim-lower,
+.fs-form .fs-display-prev .fs-hide .fs-anim-upper {
+    -webkit-animation: animHidePrev 0.5s cubic-bezier(0.7,0,0.3,1) forwards;
+    animation: animHidePrev 0.5s cubic-bezier(0.7,0,0.3,1) forwards;
+}
+
+.fs-form .fs-display-prev .fs-hide .fs-anim-upper {
+    -webkit-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+}
+
+@-webkit-keyframes animHidePrev {
+    to { opacity: 0; -webkit-transform: translate3d(0,500px,0); }
+}
+
+@keyframes animHidePrev {
+    to { opacity: 0; -webkit-transform: translate3d(0,500px,0); transform: translate3d(0,500px,0); }
+}
+
+/* Show new li when navigating to previous question */
+.fs-form .fs-display-prev .fs-show .fs-anim-lower,
+.fs-form .fs-display-prev .fs-show .fs-anim-upper {
+    -webkit-animation: animShowPrev 0.5s cubic-bezier(0.7,0,0.3,1) both 0.15s;
+    animation: animShowPrev 0.5s cubic-bezier(0.7,0,0.3,1) both 0.15s;
+}
+
+.fs-form .fs-display-prev .fs-show .fs-anim-upper {
+    -webkit-animation-delay: 0.25s;
+    animation-delay: 0.25s;
+}
+
+@-webkit-keyframes animShowPrev {
+    from { opacity: 0; -webkit-transform: translate3d(0,-500px,0); }
+}
+
+@keyframes animShowPrev {
+    from { opacity: 0; -webkit-transform: translate3d(0,-500px,0); transform: translate3d(0,-500px,0); }
+}
+
+/* Remove IE clear cross */
+input[type=text]::-ms-clear {
+    display: none;
+}
+
+@media screen and (max-width: 1400px) {
+    .fs-form-full {
+        top: 22%;
+    }
+}
+
+/* Adjust form for smaller screens */
+@media screen and (max-width: 52.5em) {
+    body {
+        min-height: 500px;
+    }
+
+    .fs-form-wrap {
+        font-size: 70%;
+    }
+
+    .fs-form {
+        font-size: 2em;
+        left: 0;
+        padding: 0 3.75em 0 1em;
+        right: 2em;
+        top: 6em;
+        width: auto;
+    }
+
+    .fs-form.fs-form-overview {
+        top: 0;
+        font-size: 1.5em;
+        padding: 1.5em 1em 8em 1em;
+        right: 0;
+    }
+
+    .fs-title {
+        padding: 20px;
+    }
+
+    .fs-numbers {
+        margin: 20px;
+    }
+
+    .fs-nav-dots {
+        right: 25px;
+    }
+
+    button.fs-continue {
+        border-radius: 50%;
+        bottom: 20px;
+        font-size: 2em;
+        height: 50px;
+        margin: 0;
+        padding: 50px 0 0 50px;
+        right: 20px;
+        width: 50px;
+    }
+
+    button.fs-continue::before {
+        content: '\27A1';
+        font-size: 1em;
+        height: 100%;
+        left: 0;
+        line-height: 50px;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+    }
+
+    .fs-continue::after {
+        content: '';
+    }
+
+    a.fs-cancel,
+    button.fs-submit {
+        font-size: 1.25em;
+        width: 100%;
+    }
+
+    .fs-message-error {
+        -webkit-transform: translate3d(0,-5px,0);
+        bottom: 1.75em;
+        font-size: 1.5em;
+        left: 0;
+        padding: 0 90px 0 2em;
+        transform: translate3d(0,-5px,0);
+        width: 100%;
+    }
+
+    .fs-message-error.fs-show {
+        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+    }
+}

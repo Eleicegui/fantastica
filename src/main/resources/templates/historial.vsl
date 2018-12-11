@@ -1,0 +1,39 @@
+<table>
+  <thead>
+    <tr>
+      #if ($admin)
+        <th>Cliente</th>
+      #end
+      <th>Fecha</th>
+      <th>Activa</th>
+      <th>Estado</th>
+      <th>Detalle</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    #if ($ordenesCompra.size() > 0)
+      #foreach ($orden in $ordenesCompra)
+        <tr>
+          #if ($admin)
+            <td>$orden.getCliente().nombre</td>
+          #end
+          <td>$orden.fecha</td>
+          
+          #if ($orden.activa)
+            <td><i class="fas fa-check"></i></td>
+          #else
+            <td><i class="fas fa-times"></i></td>
+          #end
+
+          <td>$orden.estado</td>
+          <td><i class="fas fa-search-plus"></i></td>
+        </tr>
+      #end
+    #else
+      <tr>
+        <td colspan="5" style="text-align: center"><h1>No tienes nada en tu historial.</h1></td>
+      </tr>
+    #end
+  </tbody>
+</table>

@@ -1,0 +1,19 @@
+<div class="jumbotron jumbotron-fluid">
+  <h1>$title</h1>
+
+  <div id="mostrarHistorial"></div>
+
+  <script>
+    $.ajax({
+      url: '/api/client/getHistory?client_id=all',
+      type: 'get',
+      success: function(data) {
+        $("#mostrarHistorial").html(data);
+      },
+      error: function(xhr, textStatus, errorThrown) {
+        alert(errorThrown);
+      }
+    });
+
+  </script>
+</div>

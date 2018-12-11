@@ -1,0 +1,91 @@
+<aside class="sidebar">
+    <h1>Categorías</h1>
+    <hr>
+    <ul class="categories">
+       #foreach ($c in $categorias)
+        <li>$c.nombre</li>
+       #end
+    </ul>
+</aside>
+
+<div class="content">
+    <div class="row">
+        <a href="/arma_computadora">
+            <div class="full-card">
+                <div class="img"></div>
+                Armá tu computadora
+            </div>
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="card">
+            <div id="1" class="inner-card">
+                <div class="img_product" id="img-1"></div>
+                <div class="text">
+                    <h1>$9870</h1>
+                    <h2>Motherboard GIGABYTE GTX100</h2>
+                    <h4>Socket Intel</h4>
+                </div>
+                <div class="overlay">
+                    <button class="addItem" id="1">Agregar a carro</button>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div id="2" class="inner-card">
+                <div class="img_product" id="img-2"></div>
+                <div class="text">
+                    <h1>$5360</h1>
+                    <h2>Tarjeta de video GIGABYTE GTX1050</h2>
+                    <h4>2GB DDR5</h4>
+                </div>
+                <div class="overlay">
+                    <button class="addItem" id="2">Agregar a carro</button>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div id="3" class="inner-card">
+                <div class="img_product" id="img-3"></div>
+                <div class="text">
+                    <h1>$1200</h1>
+                    <h2>Mouse GIGABYTE AORUS M5</h2>
+                    <h4>16000 DPI</h4>
+                </div>
+                <div class="overlay">
+                    <button class="addItem" id="3">Agregar a carro</button>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div id="4" class="inner-card">
+                <div class="img_product" id="img-4"></div>
+                <div class="text">
+                    <h1>$2000</h1>
+                    <h2>Teclado GIGABYTE FORCE K81</h2>
+                    <h4>Mecánico</h4>
+                </div>
+                <div class="overlay">
+                    <button class="addItem" id="4">Agregar a carro</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="card">
+            <div id="5" class="inner-card">
+                <div class="img_product" id="img-5"></div>
+                <div class="text">
+                    <h1>$4499</h1>
+                    <h2>Gabinete GIGABYTE AC300W</h2>
+                    <h4>RGB Fusion-16.7M Customizable RGB Lighting</h4>
+                </div>
+                <div class="overlay">
+                    <button class="addItem" id="5">Agregar a carro</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

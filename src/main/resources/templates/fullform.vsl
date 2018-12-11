@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es" class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Armá tu computadora</title>
+        <link rel="shortcut icon" href="../favicon.ico">
+        <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="css/component.css" />
+        <link rel="stylesheet" type="text/css" href="css/cs-select.css" />
+        <link rel="stylesheet" type="text/css" href="css/cs-skin-boxes.css" />
+        <script src="js/modernizr.custom.js"></script>
+        <script src="js/jquery.min.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="fs-form-wrap" id="fs-form-wrap">
+                <div class="fs-title">
+                    <h1 style="color: #668cff;">FANTÁSTICA</h1>
+                    <h1>Armá tu computadora</h1>
+                    <div class="codrops-top">
+                        <a class="codrops-icon codrops-icon-prev" href="/"><span>Volver</span></a>
+                    </div>
+                </div>
+
+                <form id="myform" class="fs-form fs-form-full" autocomplete="off">
+                    <ol class="fs-fields">
+                        <li data-input-trigger>
+                            <label class="fs-field-label fs-anim-upper" for="q1">¿Qué tipo de computadora quieres?</label>
+                            <div class="two_options fs-radio-custom clearfix fs-anim-lower">
+                                <span><input id="escritorio" name="escritorio" type="radio" value="escritorio"/><label for="escritorio" class="radio-conversion">De escritorio</label></span>
+                                <span><input id="notebook" name="notebook" type="radio" value="notebook"/><label for="notebook" class="radio-social">Notebook</label></span>
+                            </div>
+                        </li>
+
+                        <li data-input-trigger>
+                            <label class="fs-field-label fs-anim-upper" for="q2" data-info="Es el cerebro de tu nueva computadora">Elegí el microprocesador</label>
+                            <div class="fs-radio-fantastica clearfix fs-anim-lower" id="cpu-options">
+                                <span><input id="" name="cpu" type="radio" value=""/><label for="">Micro 1</label></span>
+                                <span><input id="" name="cpu" type="radio" value=""/><label for="">Micro 2</label></span>
+                                <span><input id="" name="cpu" type="radio" value=""/><label for="">Micro 3</label></span>
+                            </div>
+                        </li>
+
+                        <li data-input-trigger>
+                            <label class="fs-field-label fs-anim-upper" for="q3" data-info="Agrupa todos los componentes que estás eligiendo">Elegí la placa madre</label>
+                            <div class="fs-radio-fantastica clearfix fs-anim-lower" id="mother-options">
+                                <span><input id="" name="mother" type="radio" value=""/><label for="">Madre 1</label></span>
+                                <span><input id="" name="mother" type="radio" value=""/><label for="">Madre 2</label></span>
+                                <span><input id="" name="mother" type="radio" value=""/><label for="">Madre 3</label></span>
+                            </div>
+                        </li>
+
+                        <li data-input-trigger>
+                            <label class="fs-field-label fs-anim-upper" for="q4" data-info="A mayor cantidad, más procesos puede ejecutar">Elegí la memoria RAM</label>
+                            <div class="fs-radio-fantastica clearfix fs-anim-lower" id="ram-options">
+                                <span><input id="" name="ram" type="radio" value=""/><label for="">RAM 1</label></span>
+                                <span><input id="" name="ram" type="radio" value=""/><label for="">RAM 2</label></span>
+                                <span><input id="" name="ram" type="radio" value=""/><label for="">RAM 3</label></span>
+                            </div>
+                        </li>
+                    </ol>
+                    <button class="fs-submit">Agregar a carro</button>
+                    <a href="\" class="fs-cancel">Descartar</a>
+                    <h2 class="total"></h2>
+                </form>
+
+            </div>
+        </div>
+        <script src="js/classie.js"></script>
+        <script src="js/selectFx.js"></script>
+        <script src="js/fullscreenForm.js"></script>
+        <script src="js/fullform.js"></script>
+        <script>
+            (function() {
+                var formWrap = document.getElementById( "fs-form-wrap" );
+
+                [].slice.call( document.querySelectorAll( "select.cs-select" ) ).forEach( function(el) {
+                    new SelectFx( el, {
+                        stickyPlaceholder: false,
+                        onChange: function(val){
+                            document.querySelector("span.cs-placeholder").style.backgroundColor = val;
+                        }
+                    });
+                } );
+
+                new FForm( formWrap, {
+                    onReview : function() {
+                        classie.add( document.body, "overview" ); // for demo purposes only
+                    }
+                } );
+            })();
+        </script>
+    </body>
+</html>
